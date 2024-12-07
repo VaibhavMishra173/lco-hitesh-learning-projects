@@ -1,0 +1,72 @@
+i am getting Internal Server Error
+
+here is my api code 
+
+app.post("/api/v1/courseupload", (req, res) => {
+    console.log(req.headers);
+    const file = req.files.file;
+    console.log(file);
+    let path = __dirname + "/images/" + Date.now() + ".jpg";
+  
+    file.mv(path, (err) => {
+      res.send(true);
+    });
+  });
+
+here is swagger code 
+
+/courseupload:
+    post:
+      tags:
+        - String
+      summary: uploading course image
+      parameters:
+        - in: header
+          name: auth
+      requestBody:
+        content:
+          multipart/from-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses: 
+        200:
+          description: all good successs
+        400:
+          description: bad request
+        500:
+          description: internal server error
+
+here is console output
+
+TypeError: Cannot read properties of undefined (reading 'file')
+    at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/index.js:68:28
+    at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:280:10)
+    at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express-fileupload/lib/index.js:35:14
+    at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)
+
+and here is the response error message 
+	
+Error: Internal Server Error
+
+Response body
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>TypeError: Cannot read properties of undefined (reading &#39;file&#39;)<br> &nbsp; &nbsp;at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/index.js:68:28<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/route.js:144:13)<br> &nbsp; &nbsp;at Route.dispatch (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/route.js:114:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:284:15<br> &nbsp; &nbsp;at Function.process_params (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:346:12)<br> &nbsp; &nbsp;at next (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/index.js:280:10)<br> &nbsp; &nbsp;at /Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express-fileupload/lib/index.js:35:14<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/vaibhavmishra/Desktop/Practice/Backend_Development/HIteshLCO/mydocslco/node_modules/express/lib/router/layer.js:95:5)</pre>
+</body>
+</html>
